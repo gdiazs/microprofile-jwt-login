@@ -12,15 +12,15 @@ By default this library uses JOSE implementation to creates JWT. Has a password 
 
 	
 	<dependency>
-    <groupId>io.gdiazs.jwt</groupId>
-    <artifactId>microprofile-jwt-login</artifactId>
-    <version>1.0-SNAPSHOT</version>
+	    <groupId>io.gdiazs.jwt</groupId>
+	    <artifactId>microprofile-jwt-login</artifactId>
+	    <version>1.0-SNAPSHOT</version>
 	</dependency>
  
  ### Create your implementations if UserService or use in memory aproach for testing
  Once you have imported this library in a new Microprofile proyect built with https://start.microprofile.io/
  Just configure a similar class like this. You can provide your own implementation of UserService as well.
- 
+ ```java
     @Dependent
     public class AuthservicesConfig {
 
@@ -40,7 +40,7 @@ By default this library uses JOSE implementation to creates JWT. Has a password 
         return new PasswordEncoderDefault(6);
       }
     }
-
+```
 ### Configure the Microprofile config properties
 Don't forget add this properties
 
