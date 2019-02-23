@@ -1,10 +1,12 @@
-package io.microprofile.jwt.tokens;
+package io.gdiazs.jwt.tokens;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.KeyPair;
 import java.security.PrivateKey;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -26,7 +28,7 @@ import com.nimbusds.jose.Payload;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.RSASSASigner;
 
-import io.microprofile.jwt.users.User;
+import io.gdiazs.jwt.users.User;
 
 /**
  * com.nimbusds.jose Implementation
@@ -38,38 +40,64 @@ import io.microprofile.jwt.users.User;
 @Default
 public class TokenServiceJose implements TokenService {
 
+	private static final String HS_ALGORITHM = "HS";
+
+	private static final String RS_ALGORITHM = "RS";
+
 	@Inject
-	@ConfigProperty(name = "{microprofile.jwt.secret}")
+	@ConfigProperty(name = "microprofile.jwt.secret")
 	private String secret;
 
 	@Inject
-	@ConfigProperty(name = "{microprofile.jwt.privateKey}")
+	@ConfigProperty(name = "microprofile.jwt.privateKey")
 	private String privateKeyPath;
 
 	@Inject
-	@ConfigProperty(name = "{microprofile.jwt.algorithm}")
+	@ConfigProperty(name = "microprofile.jwt.algorithm")
 	private String tokenType;
-	
-	
+
 	@Inject
-	@ConfigProperty(name = "{microprofile.jwt.keyID}")
+	@ConfigProperty(name = "microprofile.jwt.keyID")
 	private String keyId;
 
+	@Inject
+	@ConfigProperty(name = "microprofile.jwt.aud")
+	private String aud;
+
+	@Inject
+	@ConfigProperty(name = "microprofile.jwt.iss")
+	private String iis;
+
+	@Inject
+	@ConfigProperty(name = "microprofile.jwt.expiration")
+	private String expiration;
+
 	@Override
-	public String generateJWT(User user, Token token) throws TokenException {
+	public String generateJWT(final User user) throws TokenException {
 
 		final String tokenType = getTokenType();
 
-		JWSHeader header = new JWSHeader.Builder(new JWSAlgorithm(tokenType)).type(JOSEObjectType.JWT).keyID(getKeyId())
-				.build();
+		final Token token = new Token();
+		token.setAud(this.aud);
+		token.setSub(user.getUsername());
+		token.setUpn(user.getUsername());
+		token.setIss(this.iis);
+		token.setJti(UUID.randomUUID().toString());
+		token.setIat(System.currentTimeMillis());
+		token.setExp(System.currentTimeMillis() + Integer.valueOf(expiration));
+		
+		token.setGroups(user.getRoles().stream().map(u -> u.getRole()).collect(Collectors.toList()));
 
-		JWSObject jwsObject = new JWSObject(header, new Payload(token.toJSONString()));
+		final JWSHeader header = new JWSHeader.Builder(new JWSAlgorithm(tokenType)).type(JOSEObjectType.JWT)
+				.keyID(getKeyId()).build();
+
+		final JWSObject jwsObject = new JWSObject(header, new Payload(token.toJSONString()));
 
 		try {
 			JWSSigner signer = null;
-			if (tokenType.contains("RS")) {
+			if (tokenType.contains(RS_ALGORITHM)) {
 				signer = new RSASSASigner(readPrivateKey());
-			} else if (tokenType.contains("HS")) {
+			} else if (tokenType.contains(HS_ALGORITHM)) {
 				signer = new MACSigner(getSecret());
 			}
 			jwsObject.sign(signer);
@@ -86,10 +114,10 @@ public class TokenServiceJose implements TokenService {
 		PEMParser pemParser = null;
 		KeyPair kp = null;
 		try {
-			InputStream inputStream = TokenServiceJose.class.getResourceAsStream(getPrivateKeyPath());
+			final InputStream inputStream = TokenServiceJose.class.getResourceAsStream(getPrivateKeyPath());
 			pemParser = new PEMParser(new InputStreamReader(inputStream));
-			JcaPEMKeyConverter converter = new JcaPEMKeyConverter().setProvider(new BouncyCastleProvider());
-			Object object = pemParser.readObject();
+			final JcaPEMKeyConverter converter = new JcaPEMKeyConverter().setProvider(new BouncyCastleProvider());
+			final Object object = pemParser.readObject();
 			kp = converter.getKeyPair((PEMKeyPair) object);
 		} finally {
 			if (null != pemParser) {
@@ -115,7 +143,5 @@ public class TokenServiceJose implements TokenService {
 	public String getKeyId() {
 		return keyId;
 	}
-	
-	
 
 }

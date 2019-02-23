@@ -1,4 +1,4 @@
-package io.microprofile.jwt.tokens;
+package io.gdiazs.jwt.tokens;
 
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;

@@ -1,4 +1,4 @@
-package io.microprofile.jwt.roles;
+package io.gdiazs.jwt.roles;
 
 public interface Role {
 

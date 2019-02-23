@@ -1,4 +1,4 @@
-package io.microprofile.jwt.users;
+package io.gdiazs.jwt.users;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,7 +17,7 @@ public final class UserBuilder{
 		return this;
 	}
 	
-	public Collection<User> build(){
+	protected Collection<User> getUsers(){
 		return this.users;
 	}
 	

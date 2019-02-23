@@ -1,4 +1,4 @@
-package io.microprofile.jwt.login;
+package io.gdiazs.jwt.login;
 
 public class LoginRequestDto {
 

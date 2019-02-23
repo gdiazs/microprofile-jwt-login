@@ -1,4 +1,4 @@
-package io.microprofile.jwt.tokens;
+package io.gdiazs.jwt.tokens;
 
 public class TokenException extends Exception {
 

@@ -1,9 +1,9 @@
-package io.microprofile.jwt.users;
+package io.gdiazs.jwt.users;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import io.microprofile.jwt.roles.Role;
+import io.gdiazs.jwt.roles.Role;
 
 public final class UserInMemory implements User {
 
