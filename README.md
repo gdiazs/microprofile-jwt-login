@@ -17,9 +17,9 @@ By default this library uses JOSE implementation to creates JWT. Has a password 
 	    <version>1.0-SNAPSHOT</version>
 	</dependency>
  
- ### Create your implementations if UserService or use in memory aproach for testing
+ ### Create your UserService Implementation or use in memory aproach for testing
  Once you have imported this library in a new Microprofile proyect built with https://start.microprofile.io/
- Just configure a similar class like this. You can provide your own implementation of UserService as well.
+ Just configure a similar class like this. You can provide your own user service implementation to fetch your user data.
  ```java
     @Dependent
     public class AuthservicesConfig {
