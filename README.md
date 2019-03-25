@@ -11,7 +11,7 @@ By default this library uses JOSE implementation to creates JWT. Has a password 
 	<dependency>
 	    <groupId>io.github.gdiazs</groupId>
 	    <artifactId>microprofile-jwt-login</artifactId>
-	    <version>1.0-SNAPSHOT</version>
+	    <version>1.0.0</version>
 	</dependency>
  
  ### Create UserService implementation or use in memory approach for testing
