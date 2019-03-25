@@ -11,10 +11,10 @@ By default this library uses JOSE implementation to creates JWT. Has a password 
 	
 ```xml
   <dependency>
-	    <groupId>io.github.gdiazs</groupId>
-	    <artifactId>microprofile-jwt-login</artifactId>
-	    <version>0.0.2</version>
-	</dependency>
+    <groupId>io.github.gdiazs</groupId>
+    <artifactId>microprofile-jwt-login</artifactId>
+    <version>0.0.2</version>
+  </dependency>
 ```
  
  ### Create UserService implementation or use in memory approach for testing
