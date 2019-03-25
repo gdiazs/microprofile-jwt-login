@@ -8,9 +8,8 @@ import java.security.PrivateKey;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
-import javax.inject.Named;
+import javax.inject.Singleton;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.openssl.PEMKeyPair;
@@ -36,8 +35,7 @@ import io.gdiazs.jwt.users.User;
  * @author Guillermo
  *
  */
-@Named
-@Default
+@Singleton
 public class TokenServiceJose implements TokenService {
 
 	private static final String HS_ALGORITHM = "HS";
@@ -71,6 +69,12 @@ public class TokenServiceJose implements TokenService {
 	@Inject
 	@ConfigProperty(name = "microprofile.jwt.expiration")
 	private String expiration;
+
+	
+	
+	
+	public TokenServiceJose() {
+	}
 
 	@Override
 	public String generateJWT(final User user) throws TokenException {

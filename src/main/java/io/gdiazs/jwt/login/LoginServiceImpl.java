@@ -1,8 +1,7 @@
 package io.gdiazs.jwt.login;
 
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
-import javax.inject.Named;
+import javax.inject.Singleton;
 
 import io.gdiazs.jwt.tokens.TokenException;
 import io.gdiazs.jwt.tokens.TokenService;
@@ -10,8 +9,7 @@ import io.gdiazs.jwt.users.User;
 import io.gdiazs.jwt.users.UserService;
 
 
-@Named
-@Default
+@Singleton
 public class LoginServiceImpl implements LoginService{
 
 	private TokenService tokenService;
@@ -21,6 +19,9 @@ public class LoginServiceImpl implements LoginService{
 	private LoginUserValidator loginUserValidator;
 	
 
+	public LoginServiceImpl() {
+	}
+	
 	@Inject
 	public LoginServiceImpl(TokenService tokenService, UserService userServicce,
 			LoginUserValidator loginUserValidator) {
