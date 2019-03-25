@@ -6,6 +6,7 @@ By default this library uses JOSE implementation to creates JWT. Has a password 
 
 
 ### On your Microprofile project 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.gdiazs/microprofile-jwt-login.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.gdiazs%22%20AND%20a:%22microprofile-jwt-login%22)
 	
 ```xml
   <dependency>
