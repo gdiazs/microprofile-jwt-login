@@ -4,15 +4,12 @@ This tiny library let's you create a authentication microservice with Microprofi
 
 By default this library uses JOSE implementation to creates JWT. Has a password validation in order to validate user credentials. Uses BCrypt with salt to verify the encoded password. You can see the dependencies in pom.xml
 
-### Clone the repo and execute 
-
-    mvn install
 
 ### On your Microprofile project 
 
 	
 	<dependency>
-	    <groupId>io.gdiazs.jwt</groupId>
+	    <groupId> io.github.gdiazs </groupId>
 	    <artifactId>microprofile-jwt-login</artifactId>
 	    <version>1.0-SNAPSHOT</version>
 	</dependency>
