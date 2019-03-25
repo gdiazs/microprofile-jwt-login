@@ -9,7 +9,7 @@ By default this library uses JOSE implementation to creates JWT. Has a password 
 
 	
 	<dependency>
-	    <groupId> io.github.gdiazs </groupId>
+	    <groupId>io.github.gdiazs</groupId>
 	    <artifactId>microprofile-jwt-login</artifactId>
 	    <version>1.0-SNAPSHOT</version>
 	</dependency>
