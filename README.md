@@ -7,12 +7,15 @@ By default this library uses JOSE implementation to creates JWT. Has a password 
 
 ### On your Microprofile project 
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.gdiazs/microprofile-jwt-login.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.gdiazs%22%20AND%20a:%22microprofile-jwt-login%22)
 	
-	<dependency>
+```xml
+  <dependency>
 	    <groupId>io.github.gdiazs</groupId>
 	    <artifactId>microprofile-jwt-login</artifactId>
-	    <version>1.0.0</version>
+	    <version>0.0.2</version>
 	</dependency>
+```
  
  ### Create UserService implementation or use in memory approach for testing
  Once you have imported this library in a Microprofile project built with https://start.microprofile.io/
@@ -47,12 +50,11 @@ microprofile-config.properties
 ```java
 microprofile.jwt.secret=yoursecrethash
 microprofile.jwt.privateKey=/privateKey.pem
-microprofile.jwt.algorithm=RS256 or HS256 // depends on this the library uses secret or privateKey
-microprofile.jwt.keyID=JWT123
+microprofile.jwt.algorithm=RS256 # or HS256 depends on this the library uses secret or privateKey
 microprofile.jwt.aud=web
 microprofile.jwt.iss=https://server.example.com
 microprofile.jwt.expiration=30000
-
+microprofile.jwt.keyID=JWT-MP
 ```
 
 
