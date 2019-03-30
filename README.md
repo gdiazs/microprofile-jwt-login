@@ -1,4 +1,6 @@
 # microprofile-jwt-login
+## This library was built for Demo purposes it's not recommended at production.
+
 This tiny library let's you create an authentication microservice with Microprofile. You should provide your own implementation of UserService interface to tells to the login service where fetch the user data.
 
 
