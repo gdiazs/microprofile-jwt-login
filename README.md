@@ -1,10 +1,10 @@
 # microprofile-jwt-login
 ## This library was built for Demo purposes it's not recommended at production.
 
-This tiny library let's you create an authentication microservice with Microprofile. You should provide your own implementation of UserService interface to tells to the login service where fetch the user data.
+This is a tiny library will let you add a simple auth mechanism. You must to provide your own implementation of UserService interface to tell to the login service where to fetch the user data.
 
 
-By default this library uses JOSE implementation to creates JWT. Has a password validation in order to validate user credentials. Uses BCrypt with salt to verify the encoded password. You can see the dependencies in pom.xml
+By default this library uses JOSE implementation for JWT token creation. It has a password validation in order to validate the user credentials. It uses BCrypt with a salt to verify the encoded password.
 
 
 ### On your Microprofile project 
@@ -20,7 +20,7 @@ By default this library uses JOSE implementation to creates JWT. Has a password 
  
  ### Create UserService implementation or use in memory approach for testing
  Once you have imported this library in a Microprofile project built with https://start.microprofile.io/
- Just configure a similar class like this. You can provide your own user service implementation to fetch your user data.
+ you just need to configure a similar class like this. You can provide your own user service implementation if you want
  ```java
     @Dependent
     public class AuthservicesConfig {
