@@ -1,7 +1,7 @@
 # microprofile-jwt-login
 ## This library was built for Demo purposes it's not recommended at production.
 
-This is a tiny library will let you add a simple auth mechanism. You must to provide your own implementation of UserService interface to tell to the login service where to fetch the user data.
+This tiny library will let you add a simple auth mechanism. You must to provide your own implementation of UserService interface to tell to the login service where to fetch the user data.
 
 
 By default this library uses JOSE implementation for JWT token creation. It has a password validation in order to validate the user credentials. It uses BCrypt with a salt to verify the encoded password.
